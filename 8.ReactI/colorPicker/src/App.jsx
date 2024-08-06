@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
-import { ChromePicker } from 'react-color';
+import './Home.css';
 
 const Home = () => {
-  const [color, setColor] = useState('#fff');
-  const [backgroundColor, setBackgroundColor] = useState('#fff');
+  const [formBackgroundColor, setFormBackgroundColor] = useState('#a1e3f5');
+  const [color, setColor] = useState('#000000');
 
-  const handleChangeComplete = (color) => {
-    setColor(color.hex);
+  const handleColorChange = (e) => {
+    setColor(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleChangeColor = (e) => {
     e.preventDefault();
-    setBackgroundColor(color);
+    setFormBackgroundColor(color);
   };
 
   return (
-    <>
-      <form 
-        style={{ backgroundColor: backgroundColor, padding: '20px', borderRadius: '5px' }}
-        onSubmit={handleSubmit}
-      >
-        <div style={{ marginBottom: '10px' }}>
-          <ChromePicker color={color} onChangeComplete={handleChangeComplete} />
+    <div className="container">
+      <h1>Color Picker</h1>
+      <form className="form" style={{ backgroundColor: formBackgroundColor }}>
+        <h2>Billing details</h2>
+        <div className="input-group">
+          <label>Color Picker</label>
+          <input type="color" value={color} onChange={handleColorChange} />
         </div>
-        <button type="submit">Change Color</button>
+        <button className="change-color-btn" onClick={handleChangeColor}>Change Color</button>
       </form>
-      </>
+    </div>
   );
 };
 
